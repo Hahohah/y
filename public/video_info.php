@@ -24,17 +24,8 @@ try {
     $titles = $youtube->getDownloadTitle($url);
     $best = $links->getBestCombinedFormat();
 
-    if ($best) {
+    
         $result = ['Admin' =>"@GGGGw", 'links' => [$best->url],'title'=>$titles
 ];
     send_json($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    } else {
-        send_json(['error' => 'No links found']);
-    }
-
-} catch (\YouTube\Exception\YouTubeException $e) {
-
-    send_json([
-        'error' => $e->getMessage()
-    ]);
-}
+    } 
