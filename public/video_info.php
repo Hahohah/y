@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: application/json');
 require('../vendor/autoload.php');
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
@@ -21,13 +21,13 @@ $youtube = new \YouTube\YouTubeDownloader();
 
 try {
     $links = $youtube->getDownloadLinks($url);
-
+    $titles = $youtube->getDownloadTitle($url);
     $best = $links->getBestCombinedFormat();
 
     if ($best) {
-        send_json([
-            'links' => [$best->url]
-        ]);
+        $result = ['Admin' =>"@GGGGw", 'links' => $best->url,'title'=>$titles,
+];
+    echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     } else {
         send_json(['error' => 'No links found']);
     }
