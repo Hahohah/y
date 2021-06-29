@@ -25,9 +25,9 @@ try {
     $best = $links->getBestCombinedFormat();
 
     if ($best) {
-        $result = ['Admin' =>"@GGGGw", 'links' => $best->url,'title'=>$titles,
+        $result = ['Admin' =>"@GGGGw", 'links' => [$best->url],'title'=>$titles
 ];
-    echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    send_json($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     } else {
         send_json(['error' => 'No links found']);
     }
